@@ -29,6 +29,7 @@ ROOTFS_DIR="/tmp/slackware-rootfs"
 LOG_FILE="/tmp/slackware-docker-build.log"
 ROOTFS_TARBALL="slackware-rootfs.tar.gz"
 IMAGE_NAME="ghcr.io/rizitis/slackware64-current-ci:slacker-very_mini-testing"
+DOCKERHUB_IMAGE="rizitis/slackware-slacker:slacker-very_mini-testing"
 
 echo " Clean up old files..."
 rm -rf "$ROOTFS_DIR" "$LOG_FILE" "$ROOTFS_TARBALL" 2>/dev/null || true
@@ -254,8 +255,19 @@ EOF
 echo " Build Docker image..."
 docker build --no-cache -t "$IMAGE_NAME" .
 
+# ========================
+# Push (both optional — uncomment what you use)
+# ========================
+# Docker Hub name for the SAME image (docker.io implied).
+# NOTE: needs a one-time `docker login -u <user>` (with sudo if you build with
+# sudo — root has its own ~/.docker/config.json!).
+
 echo " Push GHCR..."
 #docker push "$IMAGE_NAME"
+
+echo " Push Docker Hub..."
+#docker tag "$IMAGE_NAME" "$DOCKERHUB_IMAGE"
+#docker push "$DOCKERHUB_IMAGE"
 
 echo " clean up..."
 rm -f "$ROOTFS_TARBALL" Dockerfile
