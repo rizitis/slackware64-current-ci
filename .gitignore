@@ -1,0 +1,6 @@
+# local build artifacts — never commit
+BINS/
+*.txz
+*.tgz
+*.tar.gz
+Dockerfile
