@@ -20,6 +20,7 @@ fi
 #   IMAGE_NAME      - YOUR registry/namespace (you cannot push to rizitis'!)
 #                     e.g. ghcr.io/<your-github-user>/slackware64-current-ci:tag
 #                     or a plain local name like slackware-mini:testing
+#   DOCKERHUB_IMAGE - your Docker Hub name for the same image (optional)
 #   BINS/           - put your slacker-*.txz next to this script (see the
 #                     wiki's Docker page, "Building the image yourself")
 # The push at the end is commented out by default - local build only.
